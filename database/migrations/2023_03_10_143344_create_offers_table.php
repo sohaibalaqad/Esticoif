@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('providerId')->constrained('providers')->cascadeOnDelete();
             $table->foreignId('serviceUserId')->constrained('service_user')->cascadeOnDelete();
+            $table->string('price')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });

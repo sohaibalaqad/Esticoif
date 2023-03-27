@@ -45,6 +45,7 @@ class User extends Model
 		'email' => 'required',
 		'phone_number' => 'required',
 		'typeId' => 'required',
+        'city_id' => 'required'
     ];
 
     protected $perPage = 20;
@@ -54,7 +55,7 @@ class User extends Model
      *
      * @var array
      */
-    protected $fillable = ['firstName','lastName','email','phone_number', 'password', 'two_factor_secret','two_factor_recovery_codes','two_factor_confirmed_at','act','gender','typeId'];
+    protected $fillable = ['firstName','lastName','email','city_id','phone_number', 'password', 'two_factor_secret','two_factor_recovery_codes','two_factor_confirmed_at','act','gender','typeId'];
 
 
     /**

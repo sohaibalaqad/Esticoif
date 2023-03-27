@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('enName');
-            $table->string('arName');
-            $table->string('frName');
+            $table->string('arName')->nullable();
+            $table->string('frName')->nullable();
+            $table->enum('gender', ['male', 'female'])->nullable();
+            $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
+            $table->string('price')->nullable();
+            $table->enum('type', ['barber', 'hairdresser', 'chaser', 'beautician'])->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });

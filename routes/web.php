@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\UserTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +25,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function (){
     Route::get('/', function (){
         return view('dashboard');
     })->name('dashboard');
+
+    Route::resource('countries' , CountryController::class);
+    Route::resource('cities' , CityController::class);
+    Route::resource('user-types' , UserTypeController::class);
 });

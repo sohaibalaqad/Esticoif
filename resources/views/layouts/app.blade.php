@@ -73,6 +73,25 @@
                         <p>لوحة التحكم</p>
                     </a>
                 </li>
+                <li class="nav-item active">
+                    <a href="{{ route('user-types.index') }}">
+                        <i class="la la-dashboard"></i>
+                        <p>user type</p>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="{{ route('countries.index') }}">
+                        <i class="la la-dashboard"></i>
+                        <p>countries</p>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="{{ route('cities.index') }}">
+                        <i class="la la-dashboard"></i>
+                        <p>cities</p>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="components.html">
                         <i class="la la-table"></i>

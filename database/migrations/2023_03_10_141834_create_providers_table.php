@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('providers', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->longText('idImage1');
             $table->longText('idImage2');
-            $table->string('idNo');
+            $table->string('idNo')->nullable();
+            $table->enum('service_type', ['barber', 'hairdresser', 'chaser', 'beautician'])->nullable();
             $table->timestamps();
         });
     }

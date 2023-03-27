@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('lastName');
             $table->string('email')->unique();
             $table->string('phone_number')->nullable();
+            $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
             $table->string('password');
             $table->integer('act')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();

@@ -19,4 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('register/user', [\App\Http\Controllers\Api\RegisterController::class, 'register']);
+Route::post('register-2/user', [\App\Http\Controllers\Api\RegisterController::class, 'register_2']);
 Route::post('validate/user', [\App\Http\Controllers\Api\RegisterController::class, 'validateUser']);
+Route::post('login', [\App\Http\Controllers\Api\LoginController::class, 'login']);
+Route::post('changePassword', [\App\Http\Controllers\Api\ChangePasswordController::class, 'changePassword']);
+Route::post('services', [\App\Http\Controllers\Api\ServiceController::class, 'getServices']);
