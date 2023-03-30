@@ -11,9 +11,9 @@
 
                 @includeif('partials.errors')
 
-                <div class="card card-default">
+                <div class="card">
                     <div class="card-header">
-                        <span class="card-title">Create User</span>
+                        <span class="card-title" >إضافة مستخدم جديد</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('users.store') }}"  role="form" enctype="multipart/form-data">

@@ -45,10 +45,14 @@ class UserController extends Controller
     {
         request()->validate(User::$rules);
 
+        $request->merge([
+            'password' => $request->password,
+        ]);
+
         $user = User::create($request->all());
 
         return redirect()->route('users.index')
-            ->with('success', 'User created successfully.');
+            ->with('success', 'تم إضافة مستخدم بنجاح');
     }
 
     /**
@@ -91,7 +95,7 @@ class UserController extends Controller
         $user->update($request->all());
 
         return redirect()->route('users.index')
-            ->with('success', 'User updated successfully');
+            ->with('success', 'تم تعديل المستخدم بنجاح');
     }
 
     /**
@@ -104,6 +108,6 @@ class UserController extends Controller
         $user = User::find($id)->delete();
 
         return redirect()->route('users.index')
-            ->with('success', 'User deleted successfully');
+            ->with('success', 'تم حذف المستخدم بنجاح');
     }
 }

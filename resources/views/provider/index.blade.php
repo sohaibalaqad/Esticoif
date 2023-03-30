@@ -13,13 +13,13 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Provider') }}
+                                {{ __('مزودي الخدمات') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('providers.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
-                                </a>
+{{--                                <a href="{{ route('providers.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">--}}
+{{--                                  {{ __('Create New') }}--}}
+{{--                                </a>--}}
                               </div>
                         </div>
                     </div>
@@ -34,13 +34,11 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
-                                        
-										<th>Url</th>
-										<th>Idimage1</th>
-										<th>Idimage2</th>
-										<th>Idno</th>
-										<th>Service Type</th>
+                                        <th>#</th>
+
+                                        <th>الأسم</th>
+                                        <th>رقم الهوية</th>
+										<th>نوع الخدمة</th>
 
                                         <th></th>
                                     </tr>
@@ -49,20 +47,18 @@
                                     @foreach ($providers as $provider)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $provider->url }}</td>
-											<td>{{ $provider->idImage1 }}</td>
-											<td>{{ $provider->idImage2 }}</td>
-											<td>{{ $provider->idNo }}</td>
+
+                                            <td>{{ $provider->user->firstName }} {{ $provider->user->lastName }}</td>
+                                            <td>{{ $provider->idNo }}</td>
 											<td>{{ $provider->service_type }}</td>
 
                                             <td>
                                                 <form action="{{ route('providers.destroy',$provider->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('providers.show',$provider->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('providers.edit',$provider->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('providers.show',$provider->id) }}"><i class="la la-eye"></i> {{ __('عرض') }}</a>
+{{--                                                    <a class="btn btn-sm btn-success" href="{{ route('providers.edit',$provider->id) }}"><i class="la la-edit"></i> {{ __('Edit') }}</a>--}}
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="la la-trash"></i> {{ __('حذف') }}</button>
                                                 </form>
                                             </td>
                                         </tr>

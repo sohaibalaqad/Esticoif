@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $idImage1
  * @property $idImage2
  * @property $idNo
+ * @property $userId
  * @property $service_type
  * @property $created_at
  * @property $updated_at
@@ -19,6 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Document[] $documents
  * @property Offer[] $offers
  * @property ProviderService[] $providerServices
+ * @property User $user
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -26,10 +28,9 @@ class Provider extends Model
 {
     
     static $rules = [
-		'url' => 'required',
 		'idImage1' => 'required',
 		'idImage2' => 'required',
-		'idNo' => 'required',
+		'userId' => 'required',
     ];
 
     protected $perPage = 20;
@@ -39,7 +40,7 @@ class Provider extends Model
      *
      * @var array
      */
-    protected $fillable = ['url','idImage1','idImage2','idNo','service_type'];
+    protected $fillable = ['url','idImage1','idImage2','idNo','userId','service_type'];
 
 
     /**
@@ -64,6 +65,14 @@ class Provider extends Model
     public function providerServices()
     {
         return $this->hasMany('App\Models\ProviderService', 'providerId', 'id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function user()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'userId');
     }
     
 

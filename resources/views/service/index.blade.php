@@ -13,12 +13,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Service') }}
+                                {{ __('الخدمات') }}
                             </span>
 
                              <div class="float-right">
                                 <a href="{{ route('services.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('أضافة خدمة') }}
                                 </a>
                               </div>
                         </div>
@@ -34,16 +34,15 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
-                                        
-										<th>Enname</th>
-										<th>Arname</th>
-										<th>Frname</th>
-										<th>Gender</th>
-										<th>City Id</th>
-										<th>Price</th>
-										<th>Type</th>
-										<th>Description</th>
+                                        <th>#</th>
+
+										<th>الأسم (بالنجليزي)</th>
+										<th>الأسم (بالعربي)</th>
+										<th>الأسم (بالفرنسي)</th>
+										<th>الجنس</th>
+										<th>المدينة</th>
+										<th>السعر</th>
+										<th>النوع</th>
 
                                         <th></th>
                                     </tr>
@@ -52,23 +51,26 @@
                                     @foreach ($services as $service)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $service->enName }}</td>
 											<td>{{ $service->arName }}</td>
 											<td>{{ $service->frName }}</td>
-											<td>{{ $service->gender }}</td>
-											<td>{{ $service->city_id }}</td>
+											<td>@if($service->gender == 'male')
+                                                    <i class="la la-male"></i>
+                                                @else
+                                                    <i class="la la-female"></i>
+                                                @endif</td>
+											<td>{{ $service->city->name }}</td>
 											<td>{{ $service->price }}</td>
 											<td>{{ $service->type }}</td>
-											<td>{{ $service->description }}</td>
 
                                             <td>
                                                 <form action="{{ route('services.destroy',$service->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('services.show',$service->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('services.edit',$service->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('services.show',$service->id) }}"><i class="la la-eye"></i> {{ __('عرض') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('services.edit',$service->id) }}"><i class="la la-edit"></i> {{ __('تعديل') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="la la-trash"></i> {{ __('حذف') }}</button>
                                                 </form>
                                             </td>
                                         </tr>

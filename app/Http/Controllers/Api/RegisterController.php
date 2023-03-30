@@ -69,7 +69,7 @@ class RegisterController extends Controller
 
 
         $code = Verification::create([
-            'code' => rand(10000, 99999),
+            'code' => rand(100000, 999999),
             'userId' => $user->id
         ]);
 

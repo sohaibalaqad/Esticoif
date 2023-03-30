@@ -11,9 +11,9 @@
 
                 @includeif('partials.errors')
 
-                <div class="card card-default">
+                <div class="card">
                     <div class="card-header">
-                        <span class="card-title">Update User</span>
+                        <span class="card-title">تعديل بيانات مستخدم</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('users.update', $user->id) }}"  role="form" enctype="multipart/form-data">

@@ -22,6 +22,11 @@
             {!! $errors->first('idNo', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
+            {{ Form::label('userId') }}
+            {{ Form::text('userId', $provider->userId, ['class' => 'form-control' . ($errors->has('userId') ? ' is-invalid' : ''), 'placeholder' => 'Userid']) }}
+            {!! $errors->first('userId', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
             {{ Form::label('service_type') }}
             {{ Form::text('service_type', $provider->service_type, ['class' => 'form-control' . ($errors->has('service_type') ? ' is-invalid' : ''), 'placeholder' => 'Service Type']) }}
             {!! $errors->first('service_type', '<div class="invalid-feedback">:message</div>') !!}

@@ -13,13 +13,16 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('User') }}
+                                {{ __('المستخدمين') }}
                             </span>
 
                              <div class="float-right">
                                 <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('إضافة جديد') }}
                                 </a>
+                                 <a href="{{ route('user-types.index') }}" class="btn btn-secondary btn-sm float-right mr-3"  data-placement="left">
+                                     {{ __('أنواع المستخدمين') }}
+                                 </a>
                               </div>
                         </div>
                     </div>
@@ -34,18 +37,14 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
-                                        
-										<th>Firstname</th>
-										<th>Lastname</th>
-										<th>Email</th>
-										<th>Phone Number</th>
-										<th>Two Factor Secret</th>
-										<th>Two Factor Recovery Codes</th>
-										<th>Two Factor Confirmed At</th>
-										<th>Act</th>
-										<th>Gender</th>
-										<th>Typeid</th>
+                                        <th>#</th>
+
+										<th>الأسم</th>
+										<th>البريد الإلكتروني</th>
+										<th>رقم الهاتف</th>
+										<th>الحالة</th>
+										<th>الجنس</th>
+										<th>نوعه</th>
 
                                         <th></th>
                                     </tr>
@@ -54,25 +53,39 @@
                                     @foreach ($users as $user)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $user->firstName }}</td>
-											<td>{{ $user->lastName }}</td>
+
+											<td>{{ $user->firstName }} {{ $user->lastName }}</td>
 											<td>{{ $user->email }}</td>
 											<td>{{ $user->phone_number }}</td>
-											<td>{{ $user->two_factor_secret }}</td>
-											<td>{{ $user->two_factor_recovery_codes }}</td>
-											<td>{{ $user->two_factor_confirmed_at }}</td>
-											<td>{{ $user->act }}</td>
-											<td>{{ $user->gender }}</td>
-											<td>{{ $user->typeId }}</td>
+											<td>
+                                                @if($user->act == 0)
+                                                    <i class="la la-times-circle"></i> غير مفعل
+                                                @elseif($user->act == 1)
+                                                    <i class="la la-check-circle"></i> تم التحقق
+                                                @elseif($user->act == 2)
+                                                    <i class="la la-check-circle"></i> مكتمل البيانات
+                                                @elseif($user->act == 3)
+                                                    <i class="la la-check-circle"></i> مفعل
+                                                @elseif($user->act == 4)
+                                                    <i class="la la-check-circle"></i>معطل
+                                                @endif
+                                            </td>
+											<td>
+                                                @if($user->gender == 'male')
+                                                    <i class="la la-male"></i>
+                                                @else
+                                                    <i class="la la-female"></i>
+                                                @endif
+                                            </td>
+											<td>{{ $user->userType->name }}</td>
 
                                             <td>
                                                 <form action="{{ route('users.destroy',$user->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('users.show',$user->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('users.show',$user->id) }}"><i class="la la-eye"></i> عرض</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('users.edit',$user->id) }}"><i class="la la-edit"></i> تعديل</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="la la-trash"></i> حذف</button>
                                                 </form>
                                             </td>
                                         </tr>

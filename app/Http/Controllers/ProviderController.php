@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Provider;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 /**
@@ -105,5 +106,23 @@ class ProviderController extends Controller
 
         return redirect()->route('providers.index')
             ->with('success', 'Provider deleted successfully');
+    }
+
+    public function active($id){
+        $user = User::findOrFail($id);
+        $user->update([
+            'act' => 3
+        ]);
+        return redirect()->back()
+            ->with('success', 'تم تفعيل المزود');
+    }
+
+    public function unAactive($id){
+        $user = User::findOrFail($id);
+        $user->update([
+            'act' => 4
+        ]);
+        return redirect()->back()
+            ->with('success', 'تم تعطيل المزود');
     }
 }

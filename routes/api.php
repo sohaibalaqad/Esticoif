@@ -24,4 +24,3 @@ Route::post('validate/user', [\App\Http\Controllers\Api\RegisterController::clas
 Route::post('login', [\App\Http\Controllers\Api\LoginController::class, 'login']);
 Route::post('changePassword', [\App\Http\Controllers\Api\ChangePasswordController::class, 'changePassword']);
 Route::post('services', [\App\Http\Controllers\Api\ServiceController::class, 'getServices']);
-Route::post('services/request', [\App\Http\Controllers\Api\ServiceController::class, 'serviceRequest']);

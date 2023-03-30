@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class City extends Model
 {
-    
+
     static $rules = [
 		'name' => 'required',
 		'country_id' => 'required',
@@ -44,7 +44,7 @@ class City extends Model
     {
         return $this->hasOne('App\Models\Country', 'id', 'country_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -52,7 +52,7 @@ class City extends Model
     {
         return $this->hasMany('App\Models\Service', 'city_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -60,6 +60,6 @@ class City extends Model
     {
         return $this->hasMany('App\Models\User', 'city_id', 'id');
     }
-    
+
 
 }

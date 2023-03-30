@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Ready Bootstrap Dashboard</title>
+    <title>Dashboard</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('assets/dashboard/css/ready.css') }}">
@@ -38,16 +38,9 @@
                                     <div class="u-text">
                                         <h4>{{ Auth::user()->name }}</h4>
                                         <p class="text-muted">{{ Auth::user()->email }}</p>
-{{--                                        <a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>--}}
                                     </div>
                                 </div>
                             </li>
-{{--                            <div class="dropdown-divider"></div>--}}
-{{--                            <a class="dropdown-item" href="#"><i class="ti-user"></i> My Profile</a>--}}
-{{--                            <a class="dropdown-item" href="#"></i> My Balance</a>--}}
-{{--                            <a class="dropdown-item" href="#"><i class="ti-email"></i> Inbox</a>--}}
-{{--                            <div class="dropdown-divider"></div>--}}
-{{--                            <a class="dropdown-item" href="#"><i class="ti-settings"></i> Account Setting</a>--}}
                             <div class="dropdown-divider"></div>
                             <a href="{{ route('logout') }}" class="dropdown-item"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -74,65 +67,38 @@
                     </a>
                 </li>
                 <li class="nav-item active">
-                    <a href="{{ route('user-types.index') }}">
-                        <i class="la la-dashboard"></i>
-                        <p>user type</p>
+                    <a href="{{ route('users.index') }}">
+                        <i class="la la-users"></i>
+                        <p>المستخدمين</p>
                     </a>
                 </li>
                 <li class="nav-item active">
                     <a href="{{ route('countries.index') }}">
-                        <i class="la la-dashboard"></i>
-                        <p>countries</p>
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a href="{{ route('cities.index') }}">
-                        <i class="la la-dashboard"></i>
-                        <p>cities</p>
+                        <i class="la la-globe"></i>
+                        <p>الدول</p>
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="components.html">
-                        <i class="la la-table"></i>
-                        <p>Components</p>
-                        <span class="badge badge-count">14</span>
+                <li class="nav-item active">
+                    <a href="{{ route('cities.index') }}">
+                        <i class="la la-building"></i>
+                        <p>المدن</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="forms.html">
-                        <i class="la la-keyboard-o"></i>
-                        <p>Forms</p>
-                        <span class="badge badge-count">50</span>
+                <li class="nav-item active">
+                    <a href="{{ route('services.index') }}">
+                        <i class="la la-list-ol"></i>
+                        <p>الخدمات</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="tables.html">
-                        <i class="la la-th"></i>
-                        <p>Tables</p>
-                        <span class="badge badge-count">6</span>
+
+                <li class="nav-item active">
+                    <a href="{{ route('providers.index') }}">
+                        <i class="la la-user-secret"></i>
+                        <p>مزودي الخدمات</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="notifications.html">
-                        <i class="la la-bell"></i>
-                        <p>Notifications</p>
-                        <span class="badge badge-success">3</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="typography.html">
-                        <i class="la la-font"></i>
-                        <p>Typography</p>
-                        <span class="badge badge-danger">25</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="icons.html">
-                        <i class="la la-fonticons"></i>
-                        <p>Icons</p>
-                    </a>
-                </li>
+
 
             </ul>
         </div>
@@ -140,17 +106,10 @@
     <div class="main-panel">
         <div class="content">
             <div class="container-fluid">
-                <h4 class="page-title">@yield('title')</h4>
+{{--                <h4 class="page-title">@yield('template_title')</h4>--}}
                 @yield('content')
             </div>
         </div>
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="copyright ml-auto">
-                    2023, made with <i class="la la-heart heart text-danger"></i> by <a href="#">Sohaib Alaqad</a>
-                </div>
-            </div>
-        </footer>
     </div>
 </div>
 </div>
@@ -181,7 +140,7 @@
 <script src="{{ asset('assets/dashboard/js/core/popper.min.js') }}"></script>
 <script src="{{ asset('assets/dashboard/js/plugin/chartist/chartist.min.js') }}"></script>
 <script src="{{ asset('assets/dashboard/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js') }}"></script>
-<script src="{{ asset('assets/dashboard/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+{{--<script src="{{ asset('assets/dashboard/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>--}}
 <script src="{{ asset('assets/dashboard/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js') }}"></script>
 <script src="{{ asset('assets/dashboard/js/plugin/jquery-mapael/jquery.mapael.min.js') }}"></script>
 <script src="{{ asset('assets/dashboard/js/plugin/jquery-mapael/maps/world_countries.min.js') }}"></script>

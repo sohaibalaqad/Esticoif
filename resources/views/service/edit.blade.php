@@ -11,9 +11,9 @@
 
                 @includeif('partials.errors')
 
-                <div class="card card-default">
+                <div class="card ">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Service</span>
+                        <span class="card-title">{{ __('تعديل') }} خدمة</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('services.update', $service->id) }}"  role="form" enctype="multipart/form-data">

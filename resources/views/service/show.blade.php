@@ -11,45 +11,49 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Service</span>
+                            <span class="card-title">{{ __('عرض') }} خدمة {{ $service->arName }}</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('services.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('services.index') }}"> {{ __('رجوع') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
-                        
+
                         <div class="form-group">
-                            <strong>Enname:</strong>
+                            <strong>الأسم (بالنجليزي):</strong>
                             {{ $service->enName }}
                         </div>
                         <div class="form-group">
-                            <strong>Arname:</strong>
+                            <strong>الأسم (بالعربي):</strong>
                             {{ $service->arName }}
                         </div>
                         <div class="form-group">
-                            <strong>Frname:</strong>
+                            <strong>الأسم (بالفرنسي):</strong>
                             {{ $service->frName }}
                         </div>
                         <div class="form-group">
-                            <strong>Gender:</strong>
-                            {{ $service->gender }}
+                            <strong>الجنس:</strong>
+                            @if($service->gender == 'male')
+                                <i class="la la-male"></i> ذكر
+                            @else
+                                <i class="la la-female"></i>أنثى
+                            @endif
                         </div>
                         <div class="form-group">
-                            <strong>City Id:</strong>
-                            {{ $service->city_id }}
+                            <strong>المدينة:</strong>
+                            {{ $service->city->name}}
                         </div>
                         <div class="form-group">
-                            <strong>Price:</strong>
+                            <strong>السعر:</strong>
                             {{ $service->price }}
                         </div>
                         <div class="form-group">
-                            <strong>Type:</strong>
+                            <strong>النوع:</strong>
                             {{ $service->type }}
                         </div>
                         <div class="form-group">
-                            <strong>Description:</strong>
+                            <strong>الوصف:</strong>
                             {{ $service->description }}
                         </div>
 

@@ -11,9 +11,9 @@
 
                 @includeif('partials.errors')
 
-                <div class="card card-default">
+                <div class="card">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Country</span>
+                        <span class="card-title">{{ __('إضافة') }} دولة</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('countries.store') }}"  role="form" enctype="multipart/form-data">

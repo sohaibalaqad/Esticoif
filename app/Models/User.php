@@ -90,6 +90,12 @@ class User extends Model
         return $this->hasOne('App\Models\UserType', 'id', 'typeId');
     }
 
+    public function city()
+    {
+        return $this->hasOne('App\Models\City', 'id', 'city_id');
+    }
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

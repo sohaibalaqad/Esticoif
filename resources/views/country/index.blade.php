@@ -13,12 +13,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Country') }}
+                                {{ __('الدول') }}
                             </span>
 
                              <div class="float-right">
                                 <a href="{{ route('countries.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('إضافة دولة جديدة') }}
                                 </a>
                               </div>
                         </div>
@@ -34,9 +34,9 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
-                                        
-										<th>Name</th>
+                                        <th>#</th>
+
+										<th>الأسم</th>
 
                                         <th></th>
                                     </tr>
@@ -45,16 +45,16 @@
                                     @foreach ($countries as $country)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $country->name }}</td>
 
                                             <td>
                                                 <form action="{{ route('countries.destroy',$country->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('countries.show',$country->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('countries.edit',$country->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+{{--                                                    <a class="btn btn-sm btn-primary " href="{{ route('countries.show',$country->id) }}"><i class="la la-eye"></i> {{ __('عرض') }}</a>--}}
+                                                    <a class="btn btn-sm btn-success" href="{{ route('countries.edit',$country->id) }}"><i class="la la-edit"></i> {{ __('تعديل') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="la la-trash"></i> {{ __('حذف') }}</button>
                                                 </form>
                                             </td>
                                         </tr>

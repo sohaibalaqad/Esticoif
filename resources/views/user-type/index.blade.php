@@ -13,13 +13,23 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('User Type') }}
+                                {{ __('أنواع المستخدمين') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('user-types.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
-                                </a>
+                                 <form method="POST" action="{{ route('user-types.store') }}"  role="form" enctype="multipart/form-data">
+                                     @csrf
+                                     <div class="row">
+                                         <div class="col">
+                                             {{ Form::text('name', '', ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'الأسم']) }}
+                                             {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
+                                         </div>
+                                         <div class="col">
+                                             <button type="submit" class="btn btn-primary">إضافة</button>
+                                         </div>
+                                     </div>
+
+                                 </form>
                               </div>
                         </div>
                     </div>
@@ -34,9 +44,9 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
-                                        
-										<th>Name</th>
+                                        <th>#</th>
+
+										<th>الأسم</th>
 
                                         <th></th>
                                     </tr>
@@ -45,16 +55,16 @@
                                     @foreach ($userTypes as $userType)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $userType->name }}</td>
 
                                             <td>
                                                 <form action="{{ route('user-types.destroy',$userType->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('user-types.show',$userType->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('user-types.edit',$userType->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+{{--                                                    <a class="btn btn-sm btn-primary " href="{{ route('user-types.show',$userType->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>--}}
+                                                    <a class="btn btn-sm btn-success" href="{{ route('user-types.edit',$userType->id) }}"><i class="fa fa-fw fa-edit"></i> تعديل</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> حذف</button>
                                                 </form>
                                             </td>
                                         </tr>
