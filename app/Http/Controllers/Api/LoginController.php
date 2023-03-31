@@ -37,6 +37,11 @@ class LoginController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Login successful',
+                'user' => [
+                    'userType' => $user->userType->name,
+                    'act' => $user->act,
+                    'cityId' => $user->city_id
+                ],
                 'token' => $token->token,
             ], 200);
         } else {

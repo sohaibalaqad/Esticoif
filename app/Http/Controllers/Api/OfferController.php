@@ -3,15 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Service;
+use App\Models\Offer;
+use App\Models\Position;
+use App\Models\Provider;
 use App\Models\ServiceUser;
 use App\Models\Token;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class ServiceController extends Controller
+class OfferController extends Controller
 {
-    public function getServices(Request $request)
+    public function getOffers(Request $request)
     {
         $token = Token::where('token', $request->input('token'))->first();
         if ($token){
@@ -23,15 +25,23 @@ class ServiceController extends Controller
                 ], 403);
             }
 
-            $services  = Service::where('gender', $user->gender)
-                ->where('city_id', $user->city_id)
-                ->where('type', $request->type)
-                ->paginate();
+            $position = Position::select('lang','lat')->where('userId', $user->id)
+                ->orderBy('created_at', 'desc')
+                ->first();
+            $services = ServiceUser::select('orderId', 'price', 'id')->where('userId', $user->id)->get();
+            $serviceUserIds = $services->pluck('id')->toArray();
+            $offers = Offer::whereIn('serviceUserId', $serviceUserIds)->whereIn('status', [0,1])->get();
 
             return response()->json([
                 'status' => true,
-                'message' => 'get services successful',
-                'services' => $services,
+                'message' => 'get all offers successful',
+                'position' => $position,
+                'user' => [
+                    'firstName' => $user->firstName,
+                    'lastName' => $user->lastName,
+                ],
+                'offers' => $offers,
+                'services'   =>   $services
             ], 200);
 
         } else{
@@ -42,7 +52,7 @@ class ServiceController extends Controller
         }
     }
 
-    public function requestServices(Request $request)
+    public function makeOffer(Request $request)
     {
         $token = Token::where('token', $request->input('token'))->first();
         if ($token){
@@ -54,19 +64,23 @@ class ServiceController extends Controller
                 ], 403);
             }
 
-            $newRequest = ServiceUser::create([
-                'userId' => $user->id,
-                'serviceId' => $request->serviceId,
+           // your Code
+            $provider = Provider::where('userId', $user->id)->first();
+            $serviceUser = ServiceUser::where('orderId', $request->orderId)->latest()->first();
+
+            Offer::create([
+                'providerId' => $provider->id,
+                'serviceUserId' => $serviceUser->id,
                 'price' => $request->price,
                 'status' => 0,
-                'orderId' => $request->orderId ?? ServiceUser::max('orderId') + 1  ,
             ]);
 
             return response()->json([
                 'status' => true,
-                'message' => 'Request new servises successful',
-                'orderId' => $newRequest->orderId + 0,
+                'message' => 'Make offer successful',
             ], 200);
+
+            // End your Code
 
         } else{
             return response()->json([

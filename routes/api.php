@@ -24,3 +24,10 @@ Route::post('validate/user', [\App\Http\Controllers\Api\RegisterController::clas
 Route::post('login', [\App\Http\Controllers\Api\LoginController::class, 'login']);
 Route::post('changePassword', [\App\Http\Controllers\Api\ChangePasswordController::class, 'changePassword']);
 Route::post('services', [\App\Http\Controllers\Api\ServiceController::class, 'getServices']);
+Route::post('services/request', [\App\Http\Controllers\Api\ServiceController::class, 'requestServices']);
+Route::get('getCountry', [\App\Http\Controllers\Api\CityAndCountryController::class, 'getCountry']);
+Route::post('offers', [\App\Http\Controllers\Api\OfferController::class, 'getOffers']);
+Route::post('offer/make', [\App\Http\Controllers\Api\OfferController::class, 'makeOffer']);
+Route::post('getOrders', [\App\Http\Controllers\Api\OrderController::class, 'getOrders']);
+
+

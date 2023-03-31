@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ServiceUser extends Model
 {
-    
+
     static $rules = [
 		'userId' => 'required',
 		'serviceId' => 'required',
@@ -36,7 +36,9 @@ class ServiceUser extends Model
      *
      * @var array
      */
-    protected $fillable = ['userId','serviceId','evaluation','status'];
+    protected $fillable = ['userId','serviceId','evaluation','status','price','orderId'];
+
+    protected $table = 'service_user';
 
 
     /**
@@ -46,7 +48,7 @@ class ServiceUser extends Model
     {
         return $this->hasMany('App\Models\Offer', 'serviceUserId', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -54,7 +56,7 @@ class ServiceUser extends Model
     {
         return $this->hasOne('App\Models\Service', 'id', 'serviceId');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -62,6 +64,6 @@ class ServiceUser extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'userId');
     }
-    
+
 
 }
