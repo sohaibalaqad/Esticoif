@@ -28,19 +28,24 @@ class LoginController extends Controller
         }
 
         $user = User::where('email', $request->email)->first();
+        $token = Token::where('userId', $user->id)->first();
 
         if ($user && Hash::check($request->password, $user->password)) {
-            $token = Token::create([
+            $token->update([
                 'token' => Str::random(60),
-                'userId' => $user->id,
             ]);
+//            $token = Token::create([
+//                'token' => Str::random(60),
+//                'userId' => $user->id,
+//            ]);
             return response()->json([
                 'status' => true,
                 'message' => 'Login successful',
                 'user' => [
                     'userType' => $user->userType->name,
                     'act' => $user->act,
-                    'cityId' => $user->city_id
+                    'cityId' => $user->city_id,
+                    'gender' => $user->gender
                 ],
                 'token' => $token->token,
             ], 200);

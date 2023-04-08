@@ -36,7 +36,7 @@ class ServiceUser extends Model
      *
      * @var array
      */
-    protected $fillable = ['userId','serviceId','evaluation','status','price','orderId'];
+    protected $fillable = ['userId','serviceId','evaluation','status','price','orderId','color'];
 
     protected $table = 'service_user';
 

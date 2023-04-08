@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Provider
+    Color
 @endsection
 
 @section('content')
@@ -13,11 +13,31 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('مزودي الخدمات') }}
+                                {{ __('الألوان') }}
                             </span>
 
                              <div class="float-right">
-{{--                                <a href="{{ route('providers.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">--}}
+                                 <form method="POST" action="{{ route('colors.store') }}"  role="form" class="float-right" enctype="multipart/form-data">
+                                     @csrf
+                                     <div class="box-body">
+
+                                         <div class="row">
+
+                                             <div class="col" style="width: 90px;">
+                                                 {{ Form::color('hex', '', ['class' => 'form-control' . ($errors->has('hex') ? ' is-invalid' : '')]) }}
+                                                 {!! $errors->first('hex', '<div class="invalid-feedback">:message</div>') !!}
+                                             </div>
+
+                                             <div class="col">
+
+                                                 <button type="submit" class="btn btn-sm btn-primary">{{ __('أضف') }}</button>
+                                             </div>
+                                         </div>
+
+                                     </div>
+                                 </form>
+
+{{--                                <a href="{{ route('colors.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">--}}
 {{--                                  {{ __('Create New') }}--}}
 {{--                                </a>--}}
                               </div>
@@ -36,28 +56,26 @@
                                     <tr>
                                         <th>#</th>
 
-                                        <th>الأسم</th>
-                                        <th>رقم الهوية</th>
-										<th>نوع الخدمة</th>
-										<th> الرصيد</th>
+										<th>Hex</th>
+										<th>اللون</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($providers as $provider)
+                                    @foreach ($colors as $color)
                                         <tr>
                                             <td>{{ ++$i }}</td>
 
-                                            <td>{{ $provider->user->firstName }} {{ $provider->user->lastName }}</td>
-                                            <td>{{ $provider->idNo }}</td>
-											<td>{{ $provider->service_type }}</td>
-											<td>{{ $provider->balance }}</td>
+											<td>{{ $color->hex }}</td>
+											<td>
+                                                <i class="la la-square" style=" color: {{ $color->hex }}; font-size: 26pt"></i>
+                                            </td>
 
                                             <td>
-                                                <form action="{{ route('providers.destroy',$provider->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('providers.show',$provider->id) }}"><i class="la la-eye"></i> {{ __('عرض') }}</a>
-{{--                                                    <a class="btn btn-sm btn-success" href="{{ route('providers.edit',$provider->id) }}"><i class="la la-edit"></i> {{ __('Edit') }}</a>--}}
+                                                <form action="{{ route('colors.destroy',$color->id) }}" method="POST">
+{{--                                                    <a class="btn btn-sm btn-primary " href="{{ route('colors.show',$color->id) }}"><i class="la la-eye"></i> {{ __('Show') }}</a>--}}
+                                                    <a class="btn btn-sm btn-success" href="{{ route('colors.edit',$color->id) }}"><i class="la la-edit"></i> {{ __('تعديل') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="la la-trash"></i> {{ __('حذف') }}</button>
@@ -70,7 +88,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $providers->links() !!}
+                {!! $colors->links() !!}
             </div>
         </div>
     </div>

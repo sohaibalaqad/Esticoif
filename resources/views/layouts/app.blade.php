@@ -99,6 +99,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item active">
+                    <a href="{{ route('colors.index') }}">
+                        <i class="la la-delicious"></i>
+                        <p>الألوان</p>
+                    </a>
+                </li>
+
 
             </ul>
         </div>

@@ -45,6 +45,16 @@ class ServiceController extends Controller
     {
         request()->validate(Service::$rules);
 
+        // Save the image file
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '_' . $image->getClientOriginalName();
+            $path = $image->storeAs('public/images', $filename . '-'  . time());
+            $request->merge([
+                'imageUrl' =>  env('APP_URL') . '/storage/' . str_replace('public/', '', $path)
+            ]);
+        }
+
         $service = Service::create($request->all());
 
         return redirect()->route('services.index')
@@ -87,6 +97,16 @@ class ServiceController extends Controller
     public function update(Request $request, Service $service)
     {
         request()->validate(Service::$rules);
+
+        // Save the image file
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '_' . $image->getClientOriginalName();
+            $path = $image->storeAs('public/images', $filename . '-'  . time());
+            $request->merge([
+                'imageUrl' =>  env('APP_URL') . '/storage/' . str_replace('public/', '', $path)
+            ]);
+        }
 
         $service->update($request->all());
 

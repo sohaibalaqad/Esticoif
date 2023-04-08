@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Offer extends Model
 {
-    
+
     static $rules = [
 		'providerId' => 'required',
 		'serviceUserId' => 'required',
@@ -35,7 +35,7 @@ class Offer extends Model
      *
      * @var array
      */
-    protected $fillable = ['providerId','serviceUserId','price','status'];
+    protected $fillable = ['providerId','serviceUserId','price','status','orderId'];
 
 
     /**
@@ -45,7 +45,7 @@ class Offer extends Model
     {
         return $this->hasOne('App\Models\Provider', 'id', 'providerId');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -53,6 +53,6 @@ class Offer extends Model
     {
         return $this->hasOne('App\Models\ServiceUser', 'id', 'serviceUserId');
     }
-    
+
 
 }

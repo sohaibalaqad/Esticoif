@@ -18,17 +18,17 @@
         </div>
         <div class="form-group">
             {{ Form::label('الجنس') }}
-            {{ Form::select('gender', ['male'=> 'ذكر', 'female'=>'أنثى'],$service->gender, ['class' => 'form-control' . ($errors->has('gender') ? ' is-invalid' : ''), 'placeholder' => 'Gender']) }}
+            {{ Form::select('gender', ['male'=> 'ذكر', 'female'=>'أنثى'],$service->gender, ['class' => 'form-control' . ($errors->has('gender') ? ' is-invalid' : ''), 'placeholder' => 'الجنس']) }}
             {!! $errors->first('gender', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('المدينة') }}
-            {{ Form::select('city_id', \App\Models\City::pluck('name', 'id') , $service->city_id, ['class' => 'form-control' . ($errors->has('city_id') ? ' is-invalid' : ''), 'placeholder' => 'City Id']) }}
+            {{ Form::select('city_id', \App\Models\City::pluck('name', 'id') , $service->city_id, ['class' => 'form-control' . ($errors->has('city_id') ? ' is-invalid' : ''), 'placeholder' => 'المدينة']) }}
             {!! $errors->first('city_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('السعر') }}
-            {{ Form::text('price', $service->price, ['class' => 'form-control' . ($errors->has('price') ? ' is-invalid' : ''), 'placeholder' => 'Price']) }}
+            {{ Form::text('price', $service->price, ['class' => 'form-control' . ($errors->has('price') ? ' is-invalid' : ''), 'placeholder' => 'السعر']) }}
             {!! $errors->first('price', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
@@ -37,9 +37,24 @@
             {!! $errors->first('type', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('الوصف') }}
-            {{ Form::textarea('description', $service->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'الوصف']) }}
-            {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::label('الوصف (بالنجليزي)') }}
+            {{ Form::textarea('enDescription', $service->enDescription, ['class' => 'form-control' . ($errors->has('enDescription') ? ' is-invalid' : ''), 'placeholder' => 'الوصف (بالنجليزي)']) }}
+            {!! $errors->first('enDescription', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('الوصف (بالعربي)') }}
+            {{ Form::textarea('arDescription', $service->arDescription, ['class' => 'form-control' . ($errors->has('arDescription') ? ' is-invalid' : ''), 'placeholder' => 'الوصف (بالعربي)']) }}
+            {!! $errors->first('arDescription', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('الوصف (بالفرنسي)') }}
+            {{ Form::textarea('frDescription', $service->frDescription, ['class' => 'form-control' . ($errors->has('frDescription') ? ' is-invalid' : ''), 'placeholder' => 'الوصف (بالفرنسي) ']) }}
+            {!! $errors->first('frDescription', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('صورة') }}
+            {{ Form::file('image', ['class' => 'form-control' . ($errors->has('image') ? ' is-invalid' : '')]) }}
+            {!! $errors->first('image', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
     </div>

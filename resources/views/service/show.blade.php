@@ -53,8 +53,20 @@
                             {{ $service->type }}
                         </div>
                         <div class="form-group">
-                            <strong>الوصف:</strong>
-                            {{ $service->description }}
+                            <strong>الوصف (بالنجليزي):</strong>
+                            {{ $service->enDescription }}
+                        </div>
+                        <div class="form-group">
+                            <strong>الوصف (بالعربي):</strong>
+                            {{ $service->arDescription }}
+                        </div>
+                        <div class="form-group">
+                            <strong>الوصف (بالفرنسي):</strong>
+                            {{ $service->frDescription }}
+                        </div>
+                        <div class="form-group">
+                            <img src="{{ $service->imageUrl }}" alt="" srcset="">
+
                         </div>
 
                     </div>

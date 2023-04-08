@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Service extends Model
 {
-    
+
     static $rules = [
 		'enName' => 'required',
 		'city_id' => 'required',
@@ -39,7 +39,7 @@ class Service extends Model
      *
      * @var array
      */
-    protected $fillable = ['enName','arName','frName','gender','city_id','price','type','description'];
+    protected $fillable = ['enName','arName','frName','gender','city_id','price','type','enDescription', 'arDescription', 'frDescription', 'imageUrl', 'color'];
 
 
     /**
@@ -49,7 +49,7 @@ class Service extends Model
     {
         return $this->hasOne('App\Models\City', 'id', 'city_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -57,6 +57,6 @@ class Service extends Model
     {
         return $this->hasMany('App\Models\ProviderService', 'serviceId', 'id');
     }
-    
+
 
 }

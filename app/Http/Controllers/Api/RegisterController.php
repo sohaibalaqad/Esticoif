@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Document;
+use App\Models\Position;
 use App\Models\Provider;
 use App\Models\Token;
 use App\Models\User;
@@ -57,6 +58,7 @@ class RegisterController extends Controller
             'gender' => $request->input('gender'),
             'city_id' => $request->input('cityId'),
             'typeId' => $request->input('typeId'),
+            'fcm_token' => $request->input('fcm_token'),
         ]);
 
         $token = Token::create([
@@ -64,12 +66,14 @@ class RegisterController extends Controller
             'userId' => $user->id,
         ]);
 
-        // store verification code on Codes table and send to phone
-        // using this Str::randomNumber(6);
-
+        $position = Position::create([
+            'lang' => 0,
+            'lat' => 0,
+            'userId' => $user->id
+        ]);
 
         $code = Verification::create([
-            'code' => rand(100000, 999999),
+            'code' => rand(10000, 99999),
             'userId' => $user->id
         ]);
 
@@ -145,6 +149,7 @@ class RegisterController extends Controller
             'idImage1' => $request->input('idImage1'),
             'idImage2' => $request->input('idImage2'),
             'service_type' => $request->input('service_type'),
+            'userId' => $user->id
         ]);
 
         $documents = $request->input('listOfDocuments');
@@ -200,5 +205,29 @@ class RegisterController extends Controller
                 'message' => 'Invalid code',
             ], 401);
         }
+    }
+
+    public function addBalance(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+            'balance' => 'required|integer',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => $validator->errors()->all(),
+            ], 400);
+        }
+
+        $provider = Provider::findOrFail($request->id);
+        $provider->update([
+            'balance' => $provider->balance + $request->balance
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Add balance successful',
+        ], 200);
     }
 }

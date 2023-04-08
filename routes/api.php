@@ -28,6 +28,20 @@ Route::post('services/request', [\App\Http\Controllers\Api\ServiceController::cl
 Route::get('getCountry', [\App\Http\Controllers\Api\CityAndCountryController::class, 'getCountry']);
 Route::post('offers', [\App\Http\Controllers\Api\OfferController::class, 'getOffers']);
 Route::post('offer/make', [\App\Http\Controllers\Api\OfferController::class, 'makeOffer']);
+
+Route::post('offer/change/status', [\App\Http\Controllers\Api\OfferController::class, 'changeOfferStatus']);
+Route::post('offer/cancel', [\App\Http\Controllers\Api\OfferController::class, 'cancelOffer']);
+Route::post('services/done', [\App\Http\Controllers\Api\ServiceController::class, 'doneService']);
+Route::post('services/cancel', [\App\Http\Controllers\Api\ServiceController::class, 'cancelService']);
+Route::post('services/done/request', [\App\Http\Controllers\Api\ServiceController::class, 'doneRequestService']);
+Route::post('services/eval', [\App\Http\Controllers\Api\ServiceController::class, 'evalService']);
+Route::post('provider/add-balance', [\App\Http\Controllers\Api\RegisterController::class, 'addBalance']);
+
+
 Route::post('getOrders', [\App\Http\Controllers\Api\OrderController::class, 'getOrders']);
+
+Route::post('setPosition', [\App\Http\Controllers\Api\PositionController::class, 'setPosition']);
+Route::get('getColor', [\App\Http\Controllers\Api\PositionController::class, 'getColor']);
+
 
 

@@ -33,8 +33,13 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function (){
     Route::resource('user-types' , UserTypeController::class);
     Route::resource('services' , \App\Http\Controllers\ServiceController::class);
     Route::resource('providers' , ProviderController::class);
+    Route::resource('colors' , \App\Http\Controllers\ColorController::class);
     Route::get('provider/active/{id}' , [ProviderController::class, 'active'])
     ->name('active.provider');
     Route::get('provider/unActive/{id}' , [ProviderController::class, 'unAactive'])
     ->name('unActive.provider');
+
+    Route::post('/notifyForAllUsers', [\App\Http\Controllers\NotificationController::class, 'sendAll'])
+        ->name('notifyForAllUsers');
+
 });

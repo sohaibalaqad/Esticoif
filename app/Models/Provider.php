@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Provider extends Model
 {
-    
+
     static $rules = [
 		'idImage1' => 'required',
 		'idImage2' => 'required',
@@ -40,7 +40,7 @@ class Provider extends Model
      *
      * @var array
      */
-    protected $fillable = ['url','idImage1','idImage2','idNo','userId','service_type'];
+    protected $fillable = ['url','idImage1','idImage2','idNo','userId','service_type','balance'];
 
 
     /**
@@ -50,7 +50,7 @@ class Provider extends Model
     {
         return $this->hasMany('App\Models\Document', 'providerId', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -58,7 +58,7 @@ class Provider extends Model
     {
         return $this->hasMany('App\Models\Offer', 'providerId', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -66,7 +66,7 @@ class Provider extends Model
     {
         return $this->hasMany('App\Models\ProviderService', 'providerId', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -74,6 +74,6 @@ class Provider extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'userId');
     }
-    
+
 
 }
