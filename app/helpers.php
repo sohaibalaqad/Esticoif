@@ -5,7 +5,7 @@ function sendNotificationForUser($id, $title, $body)
     $user = \App\Models\User::findOrFail($id);
     $firebaseToken = [$user->fcm_token];
 
-    $SERVER_API_KEY = 'AAAAr_kKdiQ:APA91bHdZUOngAjmHvjaE4gp1X2kgM5EmRFMqs0Wt8vvHFjm7Bpjmp4WzueMlb5rSBxKqT1g0C-NWbUjwW5OKhmo-2ulZgZSgTAV1Qlp3Co4qBFrsAHB_xiDDu2FBpPBRgRONGYoWOey';
+    $SERVER_API_KEY = env('FIREBASE_KEY');
 
     $data = [
         "registration_ids" => $firebaseToken,
@@ -47,7 +47,7 @@ function sendNotificationForCustomUser($cityId, $serviceType, $title, $body)
         ->pluck('users.fcm_token')
         ->toArray();
 
-    $SERVER_API_KEY = 'AAAAr_kKdiQ:APA91bHdZUOngAjmHvjaE4gp1X2kgM5EmRFMqs0Wt8vvHFjm7Bpjmp4WzueMlb5rSBxKqT1g0C-NWbUjwW5OKhmo-2ulZgZSgTAV1Qlp3Co4qBFrsAHB_xiDDu2FBpPBRgRONGYoWOey';
+    $SERVER_API_KEY = env('FIREBASE_KEY');
 
     $data = [
         "registration_ids" => $firebaseToken,

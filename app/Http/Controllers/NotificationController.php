@@ -11,7 +11,7 @@ class NotificationController extends Controller
     {
         $firebaseToken = User::whereNotNull('fcm_token')->pluck('fcm_token')->all();
 
-        $SERVER_API_KEY = 'AAAAr_kKdiQ:APA91bHdZUOngAjmHvjaE4gp1X2kgM5EmRFMqs0Wt8vvHFjm7Bpjmp4WzueMlb5rSBxKqT1g0C-NWbUjwW5OKhmo-2ulZgZSgTAV1Qlp3Co4qBFrsAHB_xiDDu2FBpPBRgRONGYoWOey';
+        $SERVER_API_KEY = env('FIREBASE_KEY');
 
         $data = [
             "registration_ids" => $firebaseToken,
