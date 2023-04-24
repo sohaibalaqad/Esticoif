@@ -28,16 +28,15 @@ class LoginController extends Controller
         }
 
         $user = User::where('email', $request->email)->first();
-        $token = Token::where('userId', $user->id)->first();
 
         if ($user && Hash::check($request->password, $user->password)) {
+            $token = Token::where('userId', $user->id)->first();
             $token->update([
                 'token' => Str::random(60),
             ]);
-//            $token = Token::create([
-//                'token' => Str::random(60),
-//                'userId' => $user->id,
-//            ]);
+            $user->update([
+                'fcm_token' => $request->input('fcm_token'),
+            ]);
             return response()->json([
                 'status' => true,
                 'message' => 'Login successful',
@@ -56,4 +55,5 @@ class LoginController extends Controller
             ], 401);
         }
     }
+
 }

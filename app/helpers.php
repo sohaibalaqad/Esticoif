@@ -1,6 +1,6 @@
 <?php
 
-function sendNotificationForUser($id, $title, $body)
+function sendNotificationForUser($id, $title, $body, array $data = null)
 {
     $user = \App\Models\User::findOrFail($id);
     $firebaseToken = [$user->fcm_token];
@@ -12,7 +12,8 @@ function sendNotificationForUser($id, $title, $body)
         "notification" => [
             "title" => $title,
             "body" => $body,
-        ]
+        ],
+        "data" => $data
     ];
     $dataString = json_encode($data);
 

@@ -160,7 +160,11 @@ class OfferController extends Controller
         }
 
         $provider = Provider::findOrFail($offer->providerId);
-        sendNotificationForUser($provider->userId, 'حالة العرض','تم قبول العرض الخاص بك');
+        sendNotificationForUser($provider->userId,
+            'حالة العرض',
+            'تم قبول العرض الخاص بك',
+            ["typeN"=> "NewOffer"]
+        );
 
         return response()->json([
             'status' => true,

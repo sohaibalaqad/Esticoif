@@ -60,6 +60,7 @@ class ServiceController extends Controller
                 'userId' => $user->id,
                 'serviceId' => $request->serviceId,
                 'price' => $request->price,
+                'color' => $request->color,
                 'status' => 0,
                 'orderId' => $request->orderId ?? ServiceUser::max('orderId') + 1  ,
             ]);

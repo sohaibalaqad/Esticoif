@@ -230,4 +230,33 @@ class RegisterController extends Controller
             'message' => 'Add balance successful',
         ], 200);
     }
+
+    public function deleteAccount(Request $request)
+    {
+        $token = Token::where('token', $request->input('token'))->first();
+        if ($token){
+            $user = User::findOrFail($token->userId);
+            if ($user && $user->act == null){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'The account has not been verified',
+                ], 403);
+            }
+        } else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid token',
+            ], 401);
+        }
+
+        $user->update([
+            'act' => 5
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Deleted account successfully',
+        ]);
+    }
+
 }
