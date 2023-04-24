@@ -43,3 +43,4 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function (){
         ->name('notifyForAllUsers');
 
 });
+

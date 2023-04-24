@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -35,9 +36,9 @@ use Laravel\Sanctum\HasApiTokens;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class User extends Model
+class User extends Model implements \Illuminate\Contracts\Auth\CanResetPassword
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, CanResetPassword;
 
     static $rules = [
 		'firstName' => 'required',
@@ -102,6 +103,12 @@ class User extends Model
     public function verifications()
     {
         return $this->hasMany('App\Models\Verification', 'userId', 'id');
+    }
+
+
+    public function setRememberToken($value)
+    {
+        $this->remember_token = $value;
     }
 
 
