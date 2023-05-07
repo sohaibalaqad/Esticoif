@@ -9,11 +9,12 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+
+
     public function up(): void
     {
-        Schema::table('service_user', function (Blueprint $table) {
-            $table->integer('price')->after('status')->nullable();
-            $table->integer('orderId')->after('price')->nullable();
+        Schema::table('countries', function (Blueprint $table) {
+            $table->string('code')->unique()->after('name');
         });
     }
 
@@ -22,9 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('service_user', function (Blueprint $table) {
-            $table->dropColumn('price');
-            $table->dropColumn('orderId');
+        Schema::table('countries', function (Blueprint $table) {
+            $table->dropColumn('code');
         });
     }
 };

@@ -37,6 +37,7 @@ Route::post('services/done/request', [\App\Http\Controllers\Api\ServiceControlle
 Route::post('services/eval', [\App\Http\Controllers\Api\ServiceController::class, 'evalService']);
 Route::post('provider/add-balance', [\App\Http\Controllers\Api\RegisterController::class, 'addBalance']);
 Route::post('delete-account', [\App\Http\Controllers\Api\RegisterController::class, 'deleteAccount']);
+Route::post('getNotification', [\App\Http\Controllers\Api\LoginController::class, 'getNotification']);
 
 
 Route::post('getOrders', [\App\Http\Controllers\Api\OrderController::class, 'getOrders']);

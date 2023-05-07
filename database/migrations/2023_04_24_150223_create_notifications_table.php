@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('providers', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->string('url')->nullable();
-            $table->longText('idImage1');
-            $table->longText('idImage2');
-            $table->string('idNo')->nullable();
-            $table->enum('service_type', ['barber', 'hairdresser', 'Nail care','Spa servicen'])->nullable();
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
+            $table->boolean('forAll')->default(false);
+            $table->json('receivers')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('providers');
+        Schema::dropIfExists('notifications');
     }
 };

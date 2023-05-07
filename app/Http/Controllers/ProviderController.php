@@ -87,7 +87,6 @@ class ProviderController extends Controller
      */
     public function update(Request $request, Provider $provider)
     {
-        request()->validate(Provider::$rules);
 
         $provider->update($request->all());
 

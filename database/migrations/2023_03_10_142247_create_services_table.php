@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female'])->nullable();
             $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
             $table->string('price')->nullable();
-            $table->enum('type', ['barber', 'hairdresser', 'chaser', 'beautician'])->nullable();
+            $table->enum('type', ['barber', 'hairdresser', 'Nail care','Spa servicen'])->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });

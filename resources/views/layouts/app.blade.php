@@ -106,6 +106,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item active">
+                    <a href="{{ route('notifications.index') }}">
+                        <i class="la la-bell-o"></i>
+                        <p>الإشعارات</p>
+                    </a>
+                </li>
+
 
             </ul>
         </div>

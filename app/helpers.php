@@ -1,6 +1,6 @@
 <?php
 
-function sendNotificationForUser($id, $title, $body, array $data = null)
+function sendNotificationForUser($id, $title, $body)
 {
     $user = \App\Models\User::findOrFail($id);
     $firebaseToken = [$user->fcm_token];
@@ -12,8 +12,7 @@ function sendNotificationForUser($id, $title, $body, array $data = null)
         "notification" => [
             "title" => $title,
             "body" => $body,
-        ],
-        "data" => $data
+        ]
     ];
     $dataString = json_encode($data);
 
@@ -33,19 +32,31 @@ function sendNotificationForUser($id, $title, $body, array $data = null)
 
     $response = curl_exec($ch);
 
+    \App\Models\Notification::create([
+        'title' => $title,
+        'description' => $body,
+        'forAll' => false,
+        'receivers' => json_encode($user->id)
+    ]);
+
 }
 
 function sendNotificationForCustomUser($cityId, $serviceType, $title, $body)
 {
-//    $user = \App\Models\User::findOrFail($id);
-//    $firebaseToken = [$user->fcm_token];
-
     $firebaseToken = \Illuminate\Support\Facades\DB::table('users')
         ->join('providers', 'users.id', '=', 'providers.userId')
         ->where('users.typeId', '=', 2)
         ->where('users.city_id', '=', $cityId)
         ->where('providers.service_type', '=', $serviceType)
         ->pluck('users.fcm_token')
+        ->toArray();
+
+    $ids = \Illuminate\Support\Facades\DB::table('users')
+        ->join('providers', 'users.id', '=', 'providers.userId')
+        ->where('users.typeId', '=', 2)
+        ->where('users.city_id', '=', $cityId)
+        ->where('providers.service_type', '=', $serviceType)
+        ->pluck('users.id')
         ->toArray();
 
     $SERVER_API_KEY = env('FIREBASE_KEY');
@@ -74,4 +85,11 @@ function sendNotificationForCustomUser($cityId, $serviceType, $title, $body)
     curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
 
     $response = curl_exec($ch);
+
+    \App\Models\Notification::create([
+        'title' => $title,
+        'description' => $body,
+        'forAll' => false,
+        'receivers' => json_encode($ids)
+    ]);
 }

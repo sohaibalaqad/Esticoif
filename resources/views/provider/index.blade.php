@@ -57,7 +57,7 @@
                                             <td>
                                                 <form action="{{ route('providers.destroy',$provider->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('providers.show',$provider->id) }}"><i class="la la-eye"></i> {{ __('عرض') }}</a>
-{{--                                                    <a class="btn btn-sm btn-success" href="{{ route('providers.edit',$provider->id) }}"><i class="la la-edit"></i> {{ __('Edit') }}</a>--}}
+                                                    <a class="btn btn-sm btn-success" href="{{ route('providers.edit',$provider->id) }}"><i class="la la-edit"></i> {{ __('تعديل') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="la la-trash"></i> {{ __('حذف') }}</button>

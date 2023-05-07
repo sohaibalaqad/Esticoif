@@ -36,6 +36,13 @@
             {{ Form::select('type',['barber' => 'barber','hairdresser' => 'hairdresser','Nail care' => 'Nail care','Spa servicen' => 'Spa servicen'], $service->type, ['class' => 'form-control' . ($errors->has('type') ? ' is-invalid' : ''), 'placeholder' => 'النوع']) }}
             {!! $errors->first('type', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
+        <div class="form-group">
+            {{ Form::label('اللون') }}
+            {{ Form::select('color',[1 => 'نعم',0 => 'لا'], $service->color, ['class' => 'form-control' . ($errors->has('color') ? ' is-invalid' : ''), 'placeholder' => 'اللون']) }}
+            {!! $errors->first('color', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+
         <div class="form-group">
             {{ Form::label('الوصف (بالنجليزي)') }}
             {{ Form::textarea('enDescription', $service->enDescription, ['class' => 'form-control' . ($errors->has('enDescription') ? ' is-invalid' : ''), 'placeholder' => 'الوصف (بالنجليزي)']) }}

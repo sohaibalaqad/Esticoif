@@ -43,6 +43,7 @@
 										<th>المدينة</th>
 										<th>السعر</th>
 										<th>النوع</th>
+										<th>اللون</th>
 
                                         <th></th>
                                     </tr>
@@ -63,6 +64,13 @@
 											<td>{{ $service->city->name }}</td>
 											<td>{{ $service->price }}</td>
 											<td>{{ $service->type }}</td>
+											<td>
+                                                @if($service->color == 1)
+                                                    <i class="la la-check-circle"></i>
+                                                @else
+                                                    <i class="la la-close"></i>
+                                                @endif
+                                            </td>
 
                                             <td>
                                                 <form action="{{ route('services.destroy',$service->id) }}" method="POST">

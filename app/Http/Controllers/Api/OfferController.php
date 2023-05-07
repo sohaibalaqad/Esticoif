@@ -107,6 +107,13 @@ class OfferController extends Controller
             $provider = Provider::where('userId', $user->id)->first();
             $serviceUser = ServiceUser::where('orderId', $request->orderId)->latest()->first();
 
+            if ($request->price / 10 > $provider->balance ){
+                return response()->json([
+                    'status' => true,
+                    'message' => 'The balance is not enough',
+                ], 200);
+            }
+
             $offer = Offer::create([
                 'providerId' => $provider->id,
                 'serviceUserId' => $serviceUser->id,
